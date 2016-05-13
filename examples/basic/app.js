@@ -26,7 +26,6 @@
       // READY EVENT TRIGGERED WHEN PDF IS LOADED
       pdf.addEventListener('ready', pdfReady);
       function pdfReady() {
-        window.pdf = pdf;
         var numPages = pdf.getNumPages();
         var buttonPrevEl = document.getElementById('my_content__button--prev');
         var buttonNextEl = document.getElementById('my_content__button--next');
