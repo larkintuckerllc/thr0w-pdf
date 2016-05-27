@@ -207,10 +207,11 @@
         document.getElementById('thr0w_pdf_carosel__page--' +
           containerId + '_' +
           (currPageNumber - 1)).style.transform =
-          'translateX(-' + containerWidth + 'px)';
+          'translateX(-' + containerWidth + 'px) ' +
+          'translateZ(0px)';
         document.getElementById('thr0w_pdf_carosel__page--' +
           containerId + '_' +
-          currPageNumber).style.removeProperty('transform');
+          currPageNumber).style.transform = 'translateZ(0px)';
         if (currPageNumber > 2) {
           closePage(currPageNumber - 2);
         }
@@ -248,10 +249,11 @@
         document.getElementById('thr0w_pdf_carosel__page--' +
           containerId + '_' +
           (currPageNumber + 1)).style.transform =
-          'translateX(' + containerWidth + 'px)';
+          'translateX(' + containerWidth + 'px) ' +
+          'translateZ(0px)';
         document.getElementById('thr0w_pdf_carosel__page--' +
           containerId + '_' +
-          currPageNumber).style.removeProperty('transform');
+          currPageNumber).style.transform = 'translateZ(0px)';
         if (currPageNumber < numPages - 1) {
           closePage(currPageNumber + 2);
         }
@@ -292,14 +294,17 @@
         pageEl.classList.add('thr0w_pdf_carosel__page');
         switch (position) {
           case LEFT:
+            pageEl.style.transform = 'translateX(-' + containerWidth + 'px) ' +
+              'translateZ(0px)';
             containerEl.insertBefore(pageEl, containerEl.firstChild);
-            pageEl.style.transform = 'translateX(-' + containerWidth + 'px)';
             break;
           case RIGHT:
+            pageEl.style.transform = 'translateX(' + containerWidth + 'px) ' +
+              'translateZ(0px)';
             containerEl.appendChild(pageEl);
-            pageEl.style.transform = 'translateX(' + containerWidth + 'px)';
             break;
           default:
+            pageEl.style.transform = 'translateZ(0px)';
             containerEl.appendChild(pageEl);
         }
         pdf.getPage(pageNumber).then(handleGetPage);

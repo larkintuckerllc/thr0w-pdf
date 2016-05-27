@@ -299,10 +299,11 @@
         document.getElementById(&#x27;thr0w_pdf_carosel__page--&#x27; +
           containerId + &#x27;_&#x27; +
           (currPageNumber - 1)).style.transform =
-          &#x27;translateX(-&#x27; + containerWidth + &#x27;px)&#x27;;
+          &#x27;translateX(-&#x27; + containerWidth + &#x27;px) &#x27; +
+          &#x27;translateZ(0px)&#x27;;
         document.getElementById(&#x27;thr0w_pdf_carosel__page--&#x27; +
           containerId + &#x27;_&#x27; +
-          currPageNumber).style.removeProperty(&#x27;transform&#x27;);
+          currPageNumber).style.transform = &#x27;translateZ(0px)&#x27;;
         if (currPageNumber &gt; 2) {
           closePage(currPageNumber - 2);
         }
@@ -340,10 +341,11 @@
         document.getElementById(&#x27;thr0w_pdf_carosel__page--&#x27; +
           containerId + &#x27;_&#x27; +
           (currPageNumber + 1)).style.transform =
-          &#x27;translateX(&#x27; + containerWidth + &#x27;px)&#x27;;
+          &#x27;translateX(&#x27; + containerWidth + &#x27;px) &#x27; +
+          &#x27;translateZ(0px)&#x27;;
         document.getElementById(&#x27;thr0w_pdf_carosel__page--&#x27; +
           containerId + &#x27;_&#x27; +
-          currPageNumber).style.removeProperty(&#x27;transform&#x27;);
+          currPageNumber).style.transform = &#x27;translateZ(0px)&#x27;;
         if (currPageNumber &lt; numPages - 1) {
           closePage(currPageNumber + 2);
         }
@@ -384,14 +386,17 @@
         pageEl.classList.add(&#x27;thr0w_pdf_carosel__page&#x27;);
         switch (position) {
           case LEFT:
+            pageEl.style.transform = &#x27;translateX(-&#x27; + containerWidth + &#x27;px) &#x27; +
+              &#x27;translateZ(0px)&#x27;;
             containerEl.insertBefore(pageEl, containerEl.firstChild);
-            pageEl.style.transform = &#x27;translateX(-&#x27; + containerWidth + &#x27;px)&#x27;;
             break;
           case RIGHT:
+            pageEl.style.transform = &#x27;translateX(&#x27; + containerWidth + &#x27;px) &#x27; +
+              &#x27;translateZ(0px)&#x27;;
             containerEl.appendChild(pageEl);
-            pageEl.style.transform = &#x27;translateX(&#x27; + containerWidth + &#x27;px)&#x27;;
             break;
           default:
+            pageEl.style.transform = &#x27;translateZ(0px)&#x27;;
             containerEl.appendChild(pageEl);
         }
         pdf.getPage(pageNumber).then(handleGetPage);
